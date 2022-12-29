@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { MdContentCopy } from 'react-icons/md'
 import './App.css';
 
 function App() {
@@ -23,6 +24,10 @@ function App() {
       setPassPoints(points)
 
   }, [password])
+
+  useEffect(() => {
+    setPassPoints(0)
+  }, [])
 
   const generatePassword = () => {
 
@@ -91,7 +96,7 @@ function App() {
       <h1>Password Generator</h1>
       <div className='passwordDiv'>
         <span className='passwordDivText'>{password}</span>
-        <button className='copyPasswordBtn' onClick={copyPassword}>C</button>
+        <button className='copyPasswordBtn' onClick={copyPassword}><MdContentCopy /></button>
       </div>
       <div className="passwordGenerator">
         <div className="generatorCharLength">
@@ -120,16 +125,30 @@ function App() {
           <div className="passwordStrengthGraph">
             <span className='passwordStrengthText'>
               {
-                passPoints < 5 ? 'Weak' :
-                passPoints < 7 ? 'Medium' : 
-                passPoints < 10 ? 'Strong' :
-                'Very Strong'
+                passPoints < 5 ? 'WEAK' :
+                passPoints < 7 ? 'MEDIUM' : 
+                passPoints < 10 ? 'STRONG' :
+                'VERY STRONG'
               }
             </span>
-
+            <span className='passwordStrengthBars' style={{
+              color: `${
+                passPoints < 5 ? 'rgb(190, 0, 0)' : 
+                passPoints < 7 ? 'rgb(210, 210, 0)' : 
+                passPoints < 10 ? 'rgb(120, 200, 100)' : 
+                'rgb(30, 140, 0)'
+              }`
+            }}>
+              {
+                passPoints < 5 ? '█' : 
+                passPoints < 7 ? '█ █' : 
+                passPoints < 10 ? '█ █ █' : 
+                '█ █ █ █'
+              }
+            </span>
           </div>
         </div>
-        <button onClick={generatePassword}>Generate</button>
+        <button onClick={generatePassword} className='generatePasswordButton'>Generate</button>
       </div>
     </div>
   );
