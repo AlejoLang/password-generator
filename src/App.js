@@ -19,7 +19,9 @@ function App() {
       (upperInput ? 4 : 0) +
       (lowerInput ? 2 : 0) +
       (symbolInput ? 3 : 0) +
-      (lengthInp < 6 ? -7 : (lengthInp - 6))
+      (lengthInp < 6 ? -10 : 
+      (lengthInp < 8 ? -7 :
+      (lengthInp < 10 ? -4 : (lengthInp - 10))))
 
       setPassPoints(points)
 
@@ -85,6 +87,7 @@ function App() {
 
   const updateLengthCount = (e) => {
     document.querySelector('.charLengthNumber').textContent = e.target.value
+    generatePassword()
   }
 
   const copyPassword = () => {
@@ -101,23 +104,23 @@ function App() {
       <div className="passwordGenerator">
         <div className="generatorCharLength">
           <span className='charLengthText'>Character Length</span>
-          <span className='charLengthNumber'>{document.querySelector('.charLengthSelector')?.value}</span>
-          <input type="range" name="charLength" className='charLengthSelector' min={4} max={24} onChange={updateLengthCount}/>
+          <span className='charLengthNumber'>{document.querySelector('.charLengthSelector')?.value ?? 24}</span>
+          <input type="range" name="charLength" className='charLengthSelector' min={4} max={30} onChange={updateLengthCount}/>
         </div>
         <div className='passwordAttInput'>
-          <input type="checkbox" name="passwordUpp" className='passwordInput' id='uppInput'/>
+          <input type="checkbox" name="passwordUpp" className='passwordInput' id='uppInput' onChange={generatePassword}/>
           <label htmlFor="uppInput">Include Uppercase Letters</label>
         </div>
         <div className='passwordAttInput'>
-          <input type="checkbox" name="passwordLow" className='passwordInput' id='lowInput'/>
+          <input type="checkbox" name="passwordLow" className='passwordInput' id='lowInput' onChange={generatePassword}/>
           <label htmlFor="lowInput">Include Lowercase Letters</label>
         </div>
         <div className='passwordAttInput'>
-          <input type="checkbox" name="passwordSum" className='passwordInput' id='numInput'/>
+          <input type="checkbox" name="passwordSum" className='passwordInput' id='numInput' onChange={generatePassword}/>
           <label htmlFor="numInput">Include Numbers</label>
         </div>
         <div className='passwordAttInput'>
-          <input type="checkbox" name="passwordSym" className='passwordInput' id='symInput'/>
+          <input type="checkbox" name="passwordSym" className='passwordInput' id='symInput' onChange={generatePassword}/>
           <label htmlFor="symInput">Include Symbols</label>
         </div>
         <div className="passwordStrength">
