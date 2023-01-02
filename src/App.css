@@ -32,6 +32,14 @@ h1
   margin: 2rem 0;
 }
 
+.passwordDivText
+{
+  max-width: 90%;
+  overflow: hidden;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
 .copyPasswordBtn
 {
   height: 100%;
@@ -161,4 +169,21 @@ h1
 .generatePasswordButton:hover
 {
   background: rgb(38, 80, 157);
+}
+
+@media screen and (max-width: 800px) {
+  .App
+  {
+    width: 90%;
+  }
+
+  .passwordStrength
+  {
+    font-size: 16px;
+  }
+
+  .passwordStrengthText
+  {
+    font-size: 14px;
+  }
 }
